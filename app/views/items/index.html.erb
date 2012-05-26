@@ -1,0 +1,27 @@
+<% Item::KINDS.each do |kind| %>
+  <% if @items[kind].present? %>
+    <h1><%= kind.pluralize %></h1>
+    <ul>
+      <% @items[kind].each do |item| %>
+        <li>
+          <%= item.title %>
+          <%= link_to 'Edit', edit_item_path(item) %>
+          <%= link_to 'Delete', item, :confirm => 'Are you sure?',
+                      :method => :delete %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
+<%= link_to "Add Item", new_item_path %>
+
+<hr>
+EMAIL:
+
+<%=  render partial: 'as_markdown', locals: { items: @items } %>
+
+<hr>
+BLOG POST:
+
+<%=  render partial: 'as_markdown', locals: { items: @blogable_items } %>

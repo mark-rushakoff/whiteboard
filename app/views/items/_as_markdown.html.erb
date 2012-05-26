@@ -1,0 +1,18 @@
+<pre>
+(Title: Standup <%=Time.now.strftime("%m/%d/%Y")%>: Something Interesting from the post)
+
+  <% Item::KINDS.each do |kind| %>
+  <% if items[kind].present? %>
+## <%= kind.pluralize %></h1>
+      <% items[kind].each do |item| %>
+*<%= item.title %>
+        <% if item.description.present? %>
+
+<%= item.description %>
+
+       <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>
+</pre>
