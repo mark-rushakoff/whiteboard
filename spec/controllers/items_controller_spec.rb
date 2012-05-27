@@ -28,7 +28,7 @@ describe ItemsController do
   end
 
   describe "#index" do
-    it "should generate a hash of items by type" do
+    it "generates a hash of items by type" do
       help, new_face, interesting = create(:item, kind: "Help"), create(:item, kind: "New face"), create(:item, kind: "Interesting")
 
       get :index
@@ -38,7 +38,7 @@ describe ItemsController do
       response.should be_ok
     end
 
-    it "should generate a blog hash with only public items" do
+    it "generates a blog hash with only public items" do
       help, new_face, interesting = create(:item, kind: "Help"), create(:item, kind: "New face"), create(:item, kind: "Interesting")
       blogable_help, blogable_new_face, blogable_interesting = create(:item, kind: "Help", blogable: true), create(:item, kind: "New face", blogable: true), create(:item, kind: "Interesting", blogable: true)
 
@@ -46,6 +46,18 @@ describe ItemsController do
       assigns[:blogable_items]['New face'].should    == [ blogable_new_face ]
       assigns[:blogable_items]['Help'].should        == [ blogable_help ]
       assigns[:blogable_items]['Interesting'].should == [ blogable_interesting ]
+      response.should be_ok
+    end
+
+    it "does not include items which are associated with a post" do
+      post = create(:post)
+      help, new_face, interesting = create(:item, kind: "Help"), create(:item, kind: "New face"), create(:item, kind: "Interesting")
+      posted_item = create(:item, post: post)
+
+      get :index
+      assigns[:items]['New face'].should    == [ new_face ]
+      assigns[:items]['Help'].should        == [ help ]
+      assigns[:items]['Interesting'].should == [ interesting ]
       response.should be_ok
     end
   end

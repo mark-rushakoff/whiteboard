@@ -4,7 +4,9 @@ class CreateItemsTable < ActiveRecord::Migration
       t.text :title
       t.text :description
       t.string :kind
+      t.integer :post_id
       t.boolean :blogable
+      t.boolean :bumped, default: false
 
       t.timestamps
     end

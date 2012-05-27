@@ -1,0 +1,33 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="errorExplanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+        this item from being saved:</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update Title" %>
+  </div>
+<% end %>
+
+<%= render partial: 'items/as_html', locals: { items: @post.items.group_by { |i| i.kind } } %>
+
+<hr>
+EMAIL:
+
+<%=  render partial: 'items/as_markdown', locals: { title: @post.title, items: @post.items.group_by { |i| i.kind } } %>
+
+<hr>
+BLOG POST:
+
+<%=  render partial: 'items/as_markdown', locals: { title: @post.title, items: @post.blogable_items.group_by { |i| i.kind } } %>

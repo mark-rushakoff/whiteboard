@@ -1,6 +1,8 @@
 class Item < ActiveRecord::Base
   KINDS = ['New face', 'Help', 'Interesting']
 
+  belongs_to :post
+
   validates :title, presence: true
   validates :kind, inclusion: KINDS
 
@@ -8,5 +10,9 @@ class Item < ActiveRecord::Base
 
   def self.blogable
     where(blogable: true)
+  end
+
+  def self.orphans
+    where(post_id: nil)
   end
 end

@@ -1,27 +1,13 @@
-<% Item::KINDS.each do |kind| %>
-  <% if @items[kind].present? %>
-    <h1><%= kind.pluralize %></h1>
-    <ul>
-      <% @items[kind].each do |item| %>
-        <li>
-          <%= item.title %>
-          <%= link_to 'Edit', edit_item_path(item) %>
-          <%= link_to 'Delete', item, :confirm => 'Are you sure?',
-                      :method => :delete %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-<% end %>
+<%= render partial: 'as_html', locals: { items: @items } %>
 
 <%= link_to "Add Item", new_item_path %>
 
 <hr>
-EMAIL:
+<%=  form_tag '/posts', method: 'post' do %>
+    <%= label_tag :title, "Post Title:" %>
+    <%= text_field_tag 'post[title]', "Standup #{Time.now.strftime("%m/%d/%Y")}:" %>
+    <br>
+    <%= submit_tag "Create Post With These Items", confirm: "This will remove these items from the board. Are you sure?" %>
+<% end %>
 
-<%=  render partial: 'as_markdown', locals: { items: @items } %>
-
-<hr>
-BLOG POST:
-
-<%=  render partial: 'as_markdown', locals: { items: @blogable_items } %>
+<%= link_to "See previous posts", posts_path %>

@@ -13,8 +13,8 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all.group_by { |i| i.kind }
-    @blogable_items = Item.blogable.group_by { |i| i.kind }
+    @items = Item.orphans.group_by { |i| i.kind }
+    @blogable_items = Item.orphans.blogable.group_by { |i| i.kind }
   end
 
   def destroy
