@@ -13,7 +13,7 @@ describe Post do
       unclaimed_item = create(:item)
 
       post = create(:post)
-      post.adopt_all_items
+      post.adopt_all_the_items
 
       post.items.should == [unclaimed_item]
     end

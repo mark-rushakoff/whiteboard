@@ -25,6 +25,16 @@ describe ItemsController do
       assigns[:item].should be_new_record
       response.should be_ok
     end
+
+    it "should render a new face form if requested" do
+      get :new, kind: 'face'
+      response.should render_template('items/new_face')
+    end
+
+    it "uses the params to create the new item so you can set defaults in the link" do
+      get :new, item: { kind: 'Interesting' }
+      assigns[:item].kind.should == 'Interesting'
+    end
   end
 
   describe "#index" do

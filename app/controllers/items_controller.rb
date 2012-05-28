@@ -9,7 +9,12 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = Item.new(params[:item])
+    if params[:kind]
+      render "items/new_#{params[:kind]}"
+    else
+      render "items/new"
+    end
   end
 
   def index

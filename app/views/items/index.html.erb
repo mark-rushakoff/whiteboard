@@ -1,6 +1,8 @@
 <%= render partial: 'as_html', locals: { items: @items } %>
 
-<%= link_to "Add Item", new_item_path %>
+<%= link_to "Add New Face", new_item_path(kind: 'face') %>
+<%= link_to "Add Help", new_item_path('item[kind]' => 'Help') %>
+<%= link_to "Add Interesting", new_item_path('item[kind]' => 'Interesting') %>
 
 <hr>
 <%=  form_tag '/posts', method: 'post' do %>

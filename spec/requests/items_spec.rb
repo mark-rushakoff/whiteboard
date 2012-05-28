@@ -7,6 +7,6 @@ describe "items", :type => :request do
     fill_in 'item_description', :with => "No, srsly.  It doesn't work"
 
     click_button 'Create Item'
-    current_url.should == '/'
+    current_url.should == 'http://www.example.com/'
   end
 end
