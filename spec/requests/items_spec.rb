@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "items", :type => :request do
   it "creates an item" do
+    mock_omniauth
+    visit '/auth/google_apps/callback'
     visit '/items/new'
     fill_in 'item_title', :with => "IE8 doesn't work'"
     fill_in 'item_description', :with => "No, srsly.  It doesn't work"

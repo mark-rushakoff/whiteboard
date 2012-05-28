@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe PostsController do
+  before do
+    request.session[:logged_in] = true
+  end
+
   describe "#create" do
     it "creates a post" do
       expect do

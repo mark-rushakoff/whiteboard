@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe ItemsController do
+  before do
+    request.session[:logged_in] = true
+  end
+
   describe "#create" do
     it "should allow you to create an item" do
       expect {
