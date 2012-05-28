@@ -3,7 +3,7 @@
 
   <% Item::KINDS.each do |kind| %>
   <% if items[kind].present? %>
-## <%= kind.pluralize %></h1>
+## <%= kind.pluralize %>
 
       <% items[kind].each do |item| %>
 * <%= item.title %>
