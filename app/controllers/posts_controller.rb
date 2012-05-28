@@ -27,4 +27,14 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
   end
+
+  def send_email
+    @post = Post.find(params[:id])
+    if @post.sent_at
+      flash[:error] = "The message has already been sent"
+    else
+      @post.deliver_email
+    end
+    redirect_to edit_post_path(@post)
+  end
 end

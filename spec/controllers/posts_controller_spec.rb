@@ -44,4 +44,20 @@ describe PostsController do
       assigns[:posts].should == [ post ]
     end
   end
+
+  describe "#send" do
+    it "sends the email" do
+      post = create(:post, items: [ create(:item) ] )
+      put :send_email, id: post.id
+      response.should redirect_to(edit_post_path(post))
+      ActionMailer::Base.deliveries.last.to.should == ['mkocher@pivotallabs.com']
+    end
+
+    it "does not allow resending" do
+      post = create(:post, sent_at: Time.now )
+      put :send_email, id: post.id
+      response.should redirect_to(edit_post_path(post))
+      flash[:error].should == "The message has already been sent"
+    end
+  end
 end

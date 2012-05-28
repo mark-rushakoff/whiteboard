@@ -33,6 +33,13 @@ EMAIL:
 <%=  render partial: 'items/as_markdown', locals: { title: @post.title, items: @post.items.group_by { |i| i.kind } } %>
 </div>
 
+<% if @post.sent_at %>
+  This email was sent at <%=  @post.sent_at %>
+<% else %>
+  <%= link_to 'Send Email', send_email_post_path(@post), :confirm => 'Emails can not be unsent.  Are you sure?',
+              :method => :put %>
+<% end %>
+
 <hr>
 BLOG POST:
 
