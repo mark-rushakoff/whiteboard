@@ -9,7 +9,10 @@
     <%= label_tag :title, "Post Title:" %>
     <%= text_field_tag 'post[title]', "Standup #{Time.now.strftime("%m/%d/%Y")}:" %>
     <br>
-    <%= submit_tag "Create Post With These Items", confirm: "This will remove these items from the board. Are you sure?" %>
+    <%= submit_tag "Create Post With These Items",
+                    confirm: "This will remove these items from the board. Are you sure?",
+                    id: 'create-post'
+    %>
 <% end %>
 
 <%= link_to "See previous posts", posts_path %>

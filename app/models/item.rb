@@ -6,7 +6,7 @@ class Item < ActiveRecord::Base
   validates :title, presence: true
   validates :kind, inclusion: KINDS
 
-  attr_accessible :title, :description, :kind, :blogable
+  attr_accessible :title, :description, :kind, :blogable, :post_id
 
   def self.blogable
     where(blogable: true)

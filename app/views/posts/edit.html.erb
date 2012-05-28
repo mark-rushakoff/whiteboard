@@ -22,12 +22,20 @@
 
 <%= render partial: 'items/as_html', locals: { items: @post.items.group_by { |i| i.kind } } %>
 
+<%= link_to "Add New Face", new_post_item_path(@post, kind: 'face') %>
+<%= link_to "Add Help", new_post_item_path(@post, 'item[kind]' => 'Help') %>
+<%= link_to "Add Interesting", new_post_item_path(@post, 'item[kind]' => 'Interesting') %>
+
 <hr>
 EMAIL:
 
+<div class='email_post'>
 <%=  render partial: 'items/as_markdown', locals: { title: @post.title, items: @post.items.group_by { |i| i.kind } } %>
+</div>
 
 <hr>
 BLOG POST:
 
+<div class='blog_post'>
 <%=  render partial: 'items/as_markdown', locals: { title: @post.title, items: @post.blogable_items.group_by { |i| i.kind } } %>
+</div>

@@ -1,4 +1,5 @@
-<%= form_for(@item) do |f| %>
+<% form_for_item = @post ? [@post, @item] : @item %>
+<%= form_for(form_for_item) do |f| %>
     <% if @item.errors.any? %>
         <div id="errorExplanation">
           <h2><%= pluralize(@item.errors.count, "error") %> prohibited

@@ -12,7 +12,9 @@ Whiteboard::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :items
-  resources :posts
+  resources :posts do
+    resources :items, only: [ :new, :create ]
+  end
   match '/auth/:provider/callback', to: 'sessions#create'
 
   # Sample resource route with options:

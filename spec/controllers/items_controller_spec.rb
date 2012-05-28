@@ -21,6 +21,14 @@ describe ItemsController do
       post :create, item: {}
       response.should render_template 'items/new'
     end
+
+    it "sets the post_id if one is provided" do
+      standup_post = create(:post)
+      expect {
+        post :create, item: attributes_for(:item), post_id: standup_post.id
+      }.should change { standup_post.items.count }.by(1)
+      response.should redirect_to(edit_post_path(standup_post))
+    end
   end
 
   describe '#new' do
@@ -81,6 +89,15 @@ describe ItemsController do
       item = create(:item)
       delete :destroy, id: item.id
       Item.find_by_id(item.id).should_not be
+      response.should redirect_to('/')
+
+    end
+
+    it "redirects to the post if there is one" do
+      item = create(:item, post: create(:post))
+      delete :destroy, id: item.id, post_id: item.post
+      Item.find_by_id(item.id).should_not be
+      response.should redirect_to(edit_post_path(item.post))
     end
   end
 
@@ -98,6 +115,14 @@ describe ItemsController do
       item = create(:item)
       put :update, id: item.id, item: { title: "New Title" }
       item.reload.title.should == "New Title"
+      response.should redirect_to('/')
+    end
+
+    it "redirects to the post if there is one" do
+      item = create(:item, post: create(:post))
+      put :update, id: item.id, post_id: item.post, item: { title: "New Title" }
+      item.reload.title.should == "New Title"
+      response.should redirect_to(edit_post_path(item.post))
     end
   end
 end

@@ -1,14 +1,15 @@
 class ItemsController < ApplicationController
   def create
-    @item = Item.new(params[:item])
+    @item = Item.new(params[:item].merge(post_id: params[:post_id]))
     if @item.save
-      redirect_to '/'
+      redirect_to @item.post ? edit_post_path(@item.post) : '/'
     else
       render 'items/new'
     end
   end
 
   def new
+    @post = Post.find_by_id(params[:post_id])
     @item = Item.new(params[:item])
     if params[:kind]
       render "items/new_#{params[:kind]}"
@@ -25,7 +26,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to '/'
+    redirect_to @item.post ? edit_post_path(@item.post) : '/'
   end
 
   def edit
@@ -37,7 +38,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.update_attributes(params[:item])
     if @item.save
-      redirect_to '/'
+      redirect_to @item.post ? edit_post_path(@item.post) : '/'
     else
       render 'items/new'
     end
