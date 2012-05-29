@@ -31,6 +31,13 @@ describe Post do
     end
   end
 
+  describe '#title_for_email' do
+    it 'prepends [Standup][SF]' do
+      post = create(:post, title: "With Feeling")
+      post.title_for_email.should == "[Standup][SF] With Feeling"
+    end
+  end
+
   describe '#deliver_email' do
     it "sends an email" do
       post = create(:post, items: [create(:item)])

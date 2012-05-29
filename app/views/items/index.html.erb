@@ -7,7 +7,7 @@
 <hr>
 <%=  form_tag '/posts', method: 'post' do %>
     <%= label_tag :title, "Post Title:" %>
-    <%= text_field_tag 'post[title]', "Standup #{Time.now.strftime("%m/%d/%Y")}:" %>
+    <%= text_field_tag 'post[title]', "#{Time.now.strftime("%m/%d/%Y")}: " %>
     <br>
     <%= submit_tag "Create Post With These Items",
                     confirm: "This will remove these items from the board. Are you sure?",

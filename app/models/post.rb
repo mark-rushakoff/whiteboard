@@ -10,6 +10,10 @@ class Post < ActiveRecord::Base
     self.items = Item.where(post_id: nil, bumped: false)
   end
 
+  def title_for_email
+    '[Standup][SF] ' + title
+  end
+
   def deliver_email
     if sent_at
       raise "Duplicate Email"
