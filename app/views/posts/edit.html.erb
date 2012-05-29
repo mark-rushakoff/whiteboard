@@ -15,8 +15,12 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+  <div class="field">
+    <%= f.label :from %><br />
+    <%= f.text_field :from %>
+  </div>
   <div class="actions">
-    <%= f.submit "Update Title" %>
+    <%= f.submit "Update" %>
   </div>
 <% end %>
 
@@ -30,7 +34,12 @@
 EMAIL:
 
 <div class='email_post'>
-<%=  render partial: 'items/as_markdown', locals: { title: @post.title, items: @post.items.group_by { |i| i.kind } } %>
+  <pre>
+Subject: <%= @post.title %>
+From: <%= @post.from %>
+
+<%=  render partial: 'items/as_markdown', locals: { items: @post.items.group_by { |i| i.kind } } %>
+  </pre>
 </div>
 
 <% if @post.sent_at %>
@@ -44,5 +53,9 @@ EMAIL:
 BLOG POST:
 
 <div class='blog_post'>
-<%=  render partial: 'items/as_markdown', locals: { title: @post.title, items: @post.blogable_items.group_by { |i| i.kind } } %>
+  (Title: <%= @post.title %>)
+
+  <pre>
+<%=  render partial: 'items/as_markdown', locals: { items: @post.blogable_items.group_by { |i| i.kind } } %>
+  </pre>
 </div>

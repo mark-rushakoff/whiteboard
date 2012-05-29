@@ -24,6 +24,10 @@ describe "items", :type => :request do
     check 'item_blogable'
     click_button 'Create Item'
 
+    fill_in 'post_from', with: 'Matthew'
+    click_button 'Update'
+
+    find('.email_post').should have_content("From: Matthew")
     find('.email_post').should have_content("Johnathon McKenzie")
     find('.email_post').should have_content("IE8 doesn't work")
     find('.email_post').should have_content("Rubyming 5.0 is Out")

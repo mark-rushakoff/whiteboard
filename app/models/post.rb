@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true
 
-  attr_accessible :title
+  attr_accessible :title, :from
 
   def adopt_all_the_items
     self.items = Item.where(post_id: nil, bumped: false)

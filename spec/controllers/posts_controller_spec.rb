@@ -32,8 +32,9 @@ describe PostsController do
   describe "#update" do
     it "updates the post" do
       post = create(:post)
-      put :update, id: post.id, post: { title: "New Title" }
+      put :update, id: post.id, post: { title: "New Title", from: "Matthew & Matthew" }
       post.reload.title.should == "New Title"
+      post.from.should == "Matthew & Matthew"
     end
   end
 

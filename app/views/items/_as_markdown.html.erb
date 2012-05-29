@@ -1,7 +1,4 @@
-<pre>
-(Title: <%= title %>)
-
-  <% Item::KINDS.each do |kind| %>
+<% Item::KINDS.each do |kind| %>
   <% if items[kind].present? %>
 ## <%= kind.pluralize %>
 
@@ -16,4 +13,3 @@
   <% end %>
 
 <% end %>
-</pre>

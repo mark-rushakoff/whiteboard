@@ -1,1 +1,1 @@
-<%=  render partial: 'items/as_markdown', formats: :html, locals: { title: @post.title, items: @post.items.group_by { |i| i.kind } } %>
+<%=  render partial: 'items/as_markdown', formats: :html, locals: { items: @post.items.group_by { |i| i.kind } } %>
