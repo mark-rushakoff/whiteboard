@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120529011025) do
+ActiveRecord::Schema.define(:version => 20120529043152) do
 
   create_table "items", :force => true do |t|
     t.text     "title"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120529011025) do
     t.datetime "updated_at",                                :null => false
     t.datetime "sent_at"
     t.string   "from",       :default => "Standup Blogger"
+    t.datetime "blogged_at"
   end
 
 end

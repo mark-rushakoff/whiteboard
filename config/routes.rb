@@ -15,6 +15,7 @@ Whiteboard::Application.routes.draw do
   resources :posts do
     member do
       put 'send_email'
+      put 'post_to_blog'
     end
     resources :items, only: [ :new, :create ]
   end

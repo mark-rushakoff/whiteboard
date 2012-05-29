@@ -58,7 +58,44 @@ describe PostsController do
       post = create(:post, sent_at: Time.now )
       put :send_email, id: post.id
       response.should redirect_to(edit_post_path(post))
-      flash[:error].should == "The message has already been sent"
+      flash[:error].should == "The post has already been emailed"
+    end
+  end
+
+  describe "#post_to_blog" do
+    render_views
+
+    class FakeWordpress
+      attr_reader :post_opts
+      def post(opts)
+        @post_opts = opts
+      end
+    end
+
+    before do
+      @fakeWordpress = FakeWordpress.new
+      WordpressService.stub(:new) { @fakeWordpress }
+
+      @item = create(:item, public: true)
+      @post = create(:post, items: [@item])
+    end
+
+    it "posts to wordpress" do
+      put :post_to_blog, id: @post.id
+      @fakeWordpress.post_opts[:title].should == @post.title
+      @fakeWordpress.post_opts[:body].should include(@item.title)
+
+      response.should redirect_to(edit_post_path(@post))
+    end
+
+    it "doesn't post to wordpress multiple times" do
+      @post.blogged_at = Time.now
+      @post.save!
+
+      put :post_to_blog, id: @post.id
+
+      response.should redirect_to(edit_post_path(@post))
+      flash[:error].should == "The post has already been blogged"
     end
   end
 end

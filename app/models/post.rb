@@ -14,6 +14,14 @@ class Post < ActiveRecord::Base
     '[Standup][SF] ' + title
   end
 
+  def items_by_type
+    items.group_by { |i| i.kind }
+  end
+
+  def public_items_by_type
+    public_items.group_by { |i| i.kind }
+  end
+
   def deliver_email
     if sent_at
       raise "Duplicate Email"
