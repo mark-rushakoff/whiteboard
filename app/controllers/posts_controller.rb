@@ -50,6 +50,8 @@ class PostsController < ApplicationController
                      body: render_to_string(partial: 'items/as_markdown',
                                             layout: false,
                                             locals: {items: @post.public_items_by_type}) )
+      @post.blogged_at = Time.now
+      @post.save!
     end
     redirect_to edit_post_path(@post)
   end

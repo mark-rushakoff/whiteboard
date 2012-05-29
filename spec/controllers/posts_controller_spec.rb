@@ -75,6 +75,7 @@ describe PostsController do
     before do
       @fakeWordpress = FakeWordpress.new
       WordpressService.stub(:new) { @fakeWordpress }
+      ENV['WORDPRESS_USER'], ENV['WORDPRESS_PASSWORD'], ENV['WORDPRESS_BLOG'] = "foo", "bar", "baz"
 
       @item = create(:item, public: true)
       @post = create(:post, items: [@item])
@@ -86,6 +87,11 @@ describe PostsController do
       @fakeWordpress.post_opts[:body].should include(@item.title)
 
       response.should redirect_to(edit_post_path(@post))
+    end
+
+    it "marks it as posted" do
+      put :post_to_blog, id: @post.id
+      @post.reload.blogged_at.should be
     end
 
     it "doesn't post to wordpress multiple times" do
