@@ -60,7 +60,7 @@ BLOG POST:
   </pre>
 </div>
 
-<% if @post.sent_at %>
+<% if @post.blogged_at %>
   This entry was posted at <%=  @post.blogged_at %>
 <% else %>
   <%= link_to 'Post Blog Entry', post_to_blog_post_path(@post),
