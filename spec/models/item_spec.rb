@@ -21,4 +21,10 @@ describe Item do
       item.should_not be_valid
     end
   end
+
+  describe "defaults" do
+    it "defaults public to false" do
+      Item.new.public.should == false
+    end
+  end
 end
