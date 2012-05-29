@@ -51,7 +51,7 @@ describe PostsController do
       post = create(:post, items: [ create(:item) ] )
       put :send_email, id: post.id
       response.should redirect_to(edit_post_path(post))
-      ActionMailer::Base.deliveries.last.to.should == ['mkocher@pivotallabs.com']
+      ActionMailer::Base.deliveries.last.to.should == ['everyone@example.com']
     end
 
     it "does not allow resending" do

@@ -42,13 +42,13 @@ describe Post do
     it "sends an email" do
       post = create(:post, items: [create(:item)])
       post.deliver_email
-      ActionMailer::Base.deliveries.last.to.should == ['mkocher@pivotallabs.com']
+      ActionMailer::Base.deliveries.last.to.should == ['everyone@example.com']
     end
 
     it "raises an error if you send it twice" do
       post = create(:post, items: [create(:item)])
       post.deliver_email
-      ActionMailer::Base.deliveries.last.to.should == ['mkocher@pivotallabs.com']
+      ActionMailer::Base.deliveries.last.to.should == ['everyone@example.com']
       expect { post.deliver_email }.should raise_error("Duplicate Email")
     end
   end
