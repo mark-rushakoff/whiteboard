@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528195934) do
+ActiveRecord::Schema.define(:version => 20120529011025) do
 
   create_table "items", :force => true do |t|
     t.text     "title"
     t.text     "description"
     t.string   "kind"
     t.integer  "post_id"
-    t.boolean  "blogable"
+    t.boolean  "public"
     t.boolean  "bumped",      :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false

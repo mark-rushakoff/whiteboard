@@ -62,12 +62,12 @@ describe ItemsController do
 
     it "generates a blog hash with only public items" do
       help, new_face, interesting = create(:item, kind: "Help"), create(:item, kind: "New face"), create(:item, kind: "Interesting")
-      blogable_help, blogable_new_face, blogable_interesting = create(:item, kind: "Help", blogable: true), create(:item, kind: "New face", blogable: true), create(:item, kind: "Interesting", blogable: true)
+      public_help, public_new_face, public_interesting = create(:item, kind: "Help", public: true), create(:item, kind: "New face", public: true), create(:item, kind: "Interesting", public: true)
 
       get :index
-      assigns[:blogable_items]['New face'].should    == [ blogable_new_face ]
-      assigns[:blogable_items]['Help'].should        == [ blogable_help ]
-      assigns[:blogable_items]['Interesting'].should == [ blogable_interesting ]
+      assigns[:public_items]['New face'].should    == [ public_new_face ]
+      assigns[:public_items]['Help'].should        == [ public_help ]
+      assigns[:public_items]['Interesting'].should == [ public_interesting ]
       response.should be_ok
     end
 

@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   has_many :items
-  has_many :blogable_items, conditions: { blogable: true }, class_name: "Item"
+  has_many :public_items, conditions: { public: true }, class_name: "Item"
 
   validates :title, presence: true
 

@@ -21,12 +21,16 @@
       <%= f.text_area :description %>
     </div>
     <div class="field">
-      <%= f.label :blogable %><br />
-      <%= f.check_box :blogable %>
+      <%= f.label :public_false, "Private" %>
+      <%= f.radio_button :public, false %>
+      <%= f.label :public_true, "Public" %>
+      <%= f.radio_button :public, true %>
     </div>
     <div class="field">
-      <%=  f.label :kind %>
-      <%=  f.select :kind, Item::KINDS %>
+      <% Item::KINDS.each do |kind| %>
+        <%=  f.label "kind_#{kind.parameterize('_')}", kind %>
+        <%=  f.radio_button :kind, kind %>
+      <% end %>
     </div>
     <div class="actions">
       <%= f.submit %>

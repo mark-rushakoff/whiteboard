@@ -6,10 +6,10 @@ class Item < ActiveRecord::Base
   validates :title, presence: true
   validates :kind, inclusion: KINDS
 
-  attr_accessible :title, :description, :kind, :blogable, :post_id
+  attr_accessible :title, :description, :kind, :public, :post_id
 
-  def self.blogable
-    where(blogable: true)
+  def self.public
+    where(public: true)
   end
 
   def self.orphans

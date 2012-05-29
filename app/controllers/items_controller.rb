@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.orphans.group_by { |i| i.kind }
-    @blogable_items = Item.orphans.blogable.group_by { |i| i.kind }
+    @public_items = Item.orphans.public.group_by { |i| i.kind }
   end
 
   def destroy

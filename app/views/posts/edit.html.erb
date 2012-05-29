@@ -56,6 +56,6 @@ BLOG POST:
   (Title: <%= @post.title %>)
 
   <pre>
-<%=  render partial: 'items/as_markdown', locals: { items: @post.blogable_items.group_by { |i| i.kind } } %>
+<%=  render partial: 'items/as_markdown', locals: { items: @post.public_items.group_by { |i| i.kind } } %>
   </pre>
 </div>

@@ -21,7 +21,7 @@ describe "items", :type => :request do
 
     click_link 'Add Interesting'
     fill_in 'item_title', :with => "Rubyming 5.0 is Out"
-    check 'item_blogable'
+    choose 'Public'
     click_button 'Create Item'
 
     fill_in 'post_from', with: 'Matthew'
