@@ -26,9 +26,11 @@
 
 <%= render partial: 'items/as_html', locals: { items: @post.items_by_type } %>
 
-<%= link_to "Add New Face", new_post_item_path(@post, kind: 'face') %>
-<%= link_to "Add Help", new_post_item_path(@post, 'item[kind]' => 'Help') %>
-<%= link_to "Add Interesting", new_post_item_path(@post, 'item[kind]' => 'Interesting') %>
+<div class='row'>
+  <div class='span4'><%= link_to "Add New Face", new_post_item_path(@post, kind: 'face'), class: 'btn' %></div>
+  <div class='span4'><%= link_to "Add Help", new_post_item_path(@post, 'item[kind]' => 'Help'), class: 'btn' %></div>
+  <div class='span4'><%= link_to "Add Interesting", new_post_item_path(@post, 'item[kind]' => 'Interesting'), class: 'btn' %></div>
+</div>
 
 <hr>
 EMAIL:

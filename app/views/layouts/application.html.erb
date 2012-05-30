@@ -8,14 +8,30 @@
 </head>
 <body>
 
-<% if flash[:error] %>
-  <p class="flash-error"><%= flash[:error] %></p>
-<% end %>
-<% if flash[:notice] %>
-  <p class="flash-notice"><%= flash[:notice] %></p>
-<% end %>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/">
+        Whiteboard
+      </a>
+      <ul class="nav">
+        <li><%= link_to "Previous Posts", posts_path %></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<%= yield %>
+
+<div class='container-fluid'>
+  <% if flash[:error] %>
+    <p class="flash-error"><%= flash[:error] %></p>
+  <% end %>
+  <% if flash[:notice] %>
+    <p class="flash-notice"><%= flash[:notice] %></p>
+  <% end %>
+
+  <%= yield %>
+</div>
 
 </body>
 </html>

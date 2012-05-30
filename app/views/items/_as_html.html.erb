@@ -1,15 +1,19 @@
-<% Item::KINDS.each do |kind| %>
-  <h1><%= kind.pluralize %></h1>
-  <% if items[kind].present? %>
-    <ul>
-      <% items[kind].each do |item| %>
-        <li>
-          <%= item.title %>
-          <%= link_to 'Edit', edit_item_path(item) %>
-          <%= link_to 'Delete', item, :confirm => 'Are you sure?',
-                      :method => :delete %>
-        </li>
+<div class='row'>
+  <% Item::KINDS.each do |kind| %>
+    <div class='span4'>
+      <h1><%= kind.pluralize %></h1>
+      <% if items[kind].present? %>
+        <ul>
+          <% items[kind].each do |item| %>
+            <li>
+              <%= item.title %>
+              <%= link_to 'Edit', edit_item_path(item) %>
+              <%= link_to 'Delete', item, :confirm => 'Are you sure?',
+                          :method => :delete %>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
+    </div>
   <% end %>
-<% end %>
+</div>

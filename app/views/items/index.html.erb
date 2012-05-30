@@ -1,18 +1,25 @@
+
 <%= render partial: 'as_html', locals: { items: @items } %>
 
-<%= link_to "Add New Face", new_item_path(kind: 'face') %>
-<%= link_to "Add Help", new_item_path('item[kind]' => 'Help') %>
-<%= link_to "Add Interesting", new_item_path('item[kind]' => 'Interesting') %>
+<div class='row'>
+  <div class='span4'><%= link_to "Add New Face", new_item_path(kind: 'face'), class: 'btn' %></div>
+  <div class='span4'><%= link_to "Add Help", new_item_path('item[kind]' => 'Help'), class: 'btn' %></div>
+  <div class='span4'><%= link_to "Add Interesting", new_item_path('item[kind]' => 'Interesting'), class: 'btn' %></div>
+</div>
 
-<hr>
-<%=  form_tag '/posts', method: 'post' do %>
-    <%= label_tag :title, "Post Title:" %>
-    <%= text_field_tag 'post[title]', "#{Time.now.strftime("%m/%d/%Y")}: " %>
-    <br>
-    <%= submit_tag "Create Post With These Items",
-                    confirm: "This will remove these items from the board. Are you sure?",
-                    id: 'create-post'
-    %>
-<% end %>
+<div class="navbar navbar-fixed-bottom">
+  <div class="navbar-inner">
+    <div class="container">
 
-<%= link_to "See previous posts", posts_path %>
+      <%=  form_tag '/posts', method: 'post', class: 'navbar-form pull-right' do %>
+        <%= text_field_tag 'post[title]', "#{Time.now.strftime("%m/%d/%Y")}: ", class: 'span4', placeholder: "Post Title" %>
+        <%= submit_tag "Create Post",
+                       confirm: "This will remove these items from the board. Are you sure?",
+                       id: 'create-post',
+                       class: 'span2'
+        %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

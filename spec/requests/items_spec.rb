@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "items", :type => :request do
+describe "items", type: :request, js: true do
   it "creates an item" do
     mock_omniauth
     visit '/auth/google_apps/callback'
@@ -14,14 +14,15 @@ describe "items", :type => :request do
     fill_in 'item_description', :with => "No, srsly.  It doesn't work"
     click_button 'Create Item'
 
-    current_url.should == 'http://www.example.com/'
+    current_url.should match(/http:\/\/127\.0\.0\.1:\d*\//)
 
+    page.execute_script "$.rails.confirm = function() { return true; }"
     fill_in 'post_title', with: 'Standup 05/28/2012: Epic Standup'
     click_button 'create-post'
 
     click_link 'Add Interesting'
     fill_in 'item_title', :with => "Rubyming 5.0 is Out"
-    choose 'Public'
+    find("button:contains('Public')").click
     click_button 'Create Item'
 
     fill_in 'post_from', with: 'Matthew'

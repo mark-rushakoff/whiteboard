@@ -1,5 +1,5 @@
 <% form_for_item = @post ? [@post, @item] : @item %>
-<%= form_for(form_for_item) do |f| %>
+<%= form_for(form_for_item, html: { class: 'form-horizontal' }) do |f| %>
     <% if @item.errors.any? %>
         <div id="errorExplanation">
           <h2><%= pluralize(@item.errors.count, "error") %> prohibited
@@ -12,27 +12,47 @@
         </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :title %><br />
-      <%= f.text_field :title %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Item</legend>
+
+    <div class='control-group'>
+      <%= f.label :title, class: 'control-label' %>
+      <div class='controls'>
+        <%= f.text_field :title %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :description %><br />
-      <%= f.text_area :description %>
+
+    <div class='control-group'>
+      <div class='controls'>
+        <div class="btn-group" data-toggle-name="item[public]" data-toggle="buttons-radio" >
+          <button type="button" value="0" class="btn" data-toggle="button">Private</button>
+          <button type="button" value="1" class="btn" data-toggle="button">Public</button>
+        </div>
+        <%=  f.hidden_field :public, value: @item.public ? '1' : '0' %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :public_false, "Private" %>
-      <%= f.radio_button :public, false %>
-      <%= f.label :public_true, "Public" %>
-      <%= f.radio_button :public, true %>
+
+    <div class='control-group'>
+      <div class='controls'>
+        <div class="btn-group" data-toggle-name="item[kind]" data-toggle="buttons-radio" >
+          <% Item::KINDS.each do |kind| %>
+            <button type='button' value='<%= kind %>' class='btn' data-toggle="button"><%= kind %></button>
+          <% end %>
+        </div>
+        <%=  f.hidden_field :kind %>
+      </div>
     </div>
-    <div class="field">
-      <% Item::KINDS.each do |kind| %>
-        <%=  f.label "kind_#{kind.parameterize('_')}", kind %>
-        <%=  f.radio_button :kind, kind %>
-      <% end %>
+
+    <div class='control-group'>
+      <%= f.label :description, class: 'control-label' %><br />
+      <div class='controls'>
+        <%= f.text_area :description %>
+       </div>
     </div>
-    <div class="actions">
-      <%= f.submit %>
+
+
+    <div class="form-actions">
+      <%= f.submit nil, class: 'btn btn-primary' %>
     </div>
+  </fieldset>
 <% end %>
