@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/mkocher/whiteboard.png?branch=master)](http://travis-ci.org/mkocher/whiteboard)
+
 Goals
 =====
 Whiteboard is an app which aims to increase the effectiveness of office wide standups, and increase communication with the technical community by sharing what we learn with the outside world.  It does this by making two things easy - emailing a summary of standup to everyone in the company and by creating a blog post of the items which are deemed of public interest.
