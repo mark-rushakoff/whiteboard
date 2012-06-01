@@ -7,7 +7,7 @@ describe "items", type: :request, js: true do
     visit '/'
     click_link 'Add New Face'
     fill_in 'item_title', :with => "Johnathon McKenzie"
-    click_button 'Create Item'
+    click_button 'Create New Face'
 
     click_link 'Add Help'
     fill_in 'item_title', :with => "IE8 doesn't work"

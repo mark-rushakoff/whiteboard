@@ -1,5 +1,5 @@
 <% form_for_item = @post ? [@post, @item] : @item %>
-<%= form_for(form_for_item) do |f| %>
+<%= form_for(form_for_item, html: { class: 'form-horizontal' }) do |f| %>
   <% if @item.errors.any? %>
     <div id="errorExplanation">
       <h2><%= pluralize(@item.errors.count, "error") %> prohibited
@@ -12,17 +12,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title, "name" %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :public, value: false %>
-  </div>
-  <div class="field">
-    <%=  f.hidden_field :kind, value: 'New face' %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <fieldset>
+    <div class='control-group'>
+      <%= f.label :title, "Name", class: 'control-label' %>
+      <div class='controls'>
+        <%= f.text_field :title %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.hidden_field :public, value: false %>
+    </div>
+    <div class="field">
+      <%=  f.hidden_field :kind, value: 'New face' %>
+    </div>
+    <div class="form-actions">
+      <%= f.submit "Create New Face", class: 'btn btn-primary' %>
+    </div>
+  </fieldset>
 <% end %>
