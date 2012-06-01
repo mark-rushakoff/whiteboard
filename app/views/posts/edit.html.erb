@@ -59,7 +59,7 @@ BLOG POST:
 
 <% if @post.blogged_at %>
   This entry was posted at <%=  @post.blogged_at %>
-<% else %>
+<% elsif wordpress_enabled? %>
   <%= link_to 'Post Blog Entry', post_to_blog_post_path(@post),
               :confirm => 'This will post to wordpress.  Are you sure?',
               :method => :put %>
