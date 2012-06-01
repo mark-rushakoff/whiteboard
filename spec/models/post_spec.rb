@@ -52,4 +52,13 @@ describe Post do
       expect { post.deliver_email }.should raise_error("Duplicate Email")
     end
   end
+
+  describe '#items_by_type' do
+    it "orders by created_at asc" do
+      post = create(:post)
+      items = [ create(:item, created_at: Time.now), create(:item, created_at: 2.days.ago )]
+      post.items = items
+      post.items_by_type['Help'].should == items.reverse
+    end
+  end
 end

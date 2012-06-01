@@ -19,8 +19,8 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.orphans.group_by { |i| i.kind }
-    @public_items = Item.orphans.public.group_by { |i| i.kind }
+    @items = Item.orphans
+    @public_items = Item.public.orphans
   end
 
   def destroy

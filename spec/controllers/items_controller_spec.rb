@@ -60,6 +60,14 @@ describe ItemsController do
       response.should be_ok
     end
 
+    it "sorts the hash by created_at desc" do
+      new_help = create(:item, created_at: 1.days.ago)
+      old_help = create(:item, created_at: 4.days.ago)
+
+      get :index
+      assigns[:items]['Help'].should == [ old_help, new_help ]
+    end
+
     it "generates a blog hash with only public items" do
       help, new_face, interesting = create(:item, kind: "Help"), create(:item, kind: "New face"), create(:item, kind: "Interesting")
       public_help, public_new_face, public_interesting = create(:item, kind: "Help", public: true), create(:item, kind: "New face", public: true), create(:item, kind: "Interesting", public: true)

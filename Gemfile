@@ -12,9 +12,11 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'launchy'
   gem 'heroku'
   gem 'sqlite3'
+  gem 'database_cleaner'
 end
 
 group :assets do

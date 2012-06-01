@@ -15,11 +15,11 @@ class Post < ActiveRecord::Base
   end
 
   def items_by_type
-    items.group_by { |i| i.kind }
+    sorted_by_type(items)
   end
 
   def public_items_by_type
-    public_items.group_by { |i| i.kind }
+    sorted_by_type(public_items)
   end
 
   def deliver_email
@@ -30,5 +30,11 @@ class Post < ActiveRecord::Base
       self.sent_at = Time.now
       self.save!
     end
+  end
+
+  private
+
+  def sorted_by_type(relation)
+    relation.order("created_at ASC").group_by(&:kind)
   end
 end

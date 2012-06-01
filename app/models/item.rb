@@ -13,6 +13,6 @@ class Item < ActiveRecord::Base
   end
 
   def self.orphans
-    where(post_id: nil)
+    where(post_id: nil).order("created_at ASC").group_by(&:kind)
   end
 end
