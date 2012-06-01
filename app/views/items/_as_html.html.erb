@@ -2,14 +2,19 @@
   <% Item::KINDS.each do |kind| %>
     <div class='span4'>
       <h1><%= kind.pluralize %></h1>
+      <hr>
       <% if items[kind].present? %>
         <ul>
           <% items[kind].each do |item| %>
             <li>
               <%= item.title %>
-              <%= link_to 'Edit', edit_item_path(item) %>
-              <%= link_to 'Delete', item, :confirm => 'Are you sure?',
-                          :method => :delete %>
+              <%= link_to edit_item_path(item) do %>
+                <i class="icon-pencil"></i>
+               <% end %>
+              <%= link_to item, confirm: 'Are you sure?',
+                          method: :delete do %>
+                 <i class='icon-trash'></i>
+               <% end %>
             </li>
           <% end %>
         </ul>

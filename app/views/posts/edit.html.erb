@@ -1,4 +1,14 @@
-<%= form_for(@post) do |f| %>
+<%= render partial: 'items/as_html', locals: { items: @post.items_by_type } %>
+
+<div class='row'>
+  <div class='span4'><%= link_to "Add New Face", new_post_item_path(@post, kind: 'face'), class: 'btn' %></div>
+  <div class='span4'><%= link_to "Add Help", new_post_item_path(@post, 'item[kind]' => 'Help'), class: 'btn' %></div>
+  <div class='span4'><%= link_to "Add Interesting", new_post_item_path(@post, 'item[kind]' => 'Interesting'), class: 'btn' %></div>
+</div>
+
+<hr>
+
+<%= form_for(@post, html: { class: 'well form-inline'})  do |f| %>
   <% if @post.errors.any? %>
     <div id="errorExplanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited
@@ -11,26 +21,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
     <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :from %><br />
     <%= f.text_field :from %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+    <%= f.submit "Update", class: 'btn btn-primary' %>
 <% end %>
 
-<%= render partial: 'items/as_html', locals: { items: @post.items_by_type } %>
-
-<div class='row'>
-  <div class='span4'><%= link_to "Add New Face", new_post_item_path(@post, kind: 'face'), class: 'btn' %></div>
-  <div class='span4'><%= link_to "Add Help", new_post_item_path(@post, 'item[kind]' => 'Help'), class: 'btn' %></div>
-  <div class='span4'><%= link_to "Add Interesting", new_post_item_path(@post, 'item[kind]' => 'Interesting'), class: 'btn' %></div>
-</div>
 
 <hr>
 EMAIL:
