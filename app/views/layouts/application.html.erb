@@ -18,6 +18,15 @@
       <ul class="nav">
         <li><%= link_to "Previous Posts", posts_path %></li>
       </ul>
+      <% if session['logged_in'] %>
+        <ul class="nav pull-right">
+          <li>
+            <%= link_to '/logout' do %>
+              <h2><i class='icon-signout'></i></h2>
+            <%- end -%>
+          </li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>

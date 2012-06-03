@@ -4,6 +4,10 @@ class SessionsController < ApplicationController
     redirect_to '/'
   end
 
+  def destroy
+    session[:logged_in] = false
+  end
+
   def require_login
   end
 end
