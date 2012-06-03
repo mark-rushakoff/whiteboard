@@ -32,9 +32,16 @@ describe Post do
   end
 
   describe '#title_for_email' do
-    it 'prepends [Standup][SF]' do
-      post = create(:post, title: "With Feeling")
-      post.title_for_email.should == "[Standup][SF] With Feeling"
+    it 'prepends [Standup][SF] and the date' do
+      post = create(:post, title: "With Feeling", created_at: Time.parse("2012-06-02 12:00:00 -0700"))
+      post.title_for_email.should == "[Standup][SF] 06/02/12: With Feeling"
+    end
+  end
+
+  describe '#title_for_blog' do
+    it 'prepends the data' do
+      post = create(:post, title: "With Feeling", created_at: Time.parse("2012-06-02 12:00:00 -0700"))
+      post.title_for_blog.should == "06/02/12: With Feeling"
     end
   end
 

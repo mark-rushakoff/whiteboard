@@ -6,11 +6,11 @@
     <div class="container">
 
       <%=  form_tag '/posts', method: 'post', class: 'navbar-form pull-right' do %>
-        <%= text_field_tag 'post[title]', "#{Time.now.strftime("%m/%d/%Y")}: ", class: 'span4', placeholder: "Post Title" %>
+        <%= text_field_tag 'post[from]', nil,  placeholder: "Blogger Name(s)" %>
+        <%= text_field_tag 'post[title]', nil, placeholder: "Post Title (eg: Best Standup Ever)" %>
         <%= submit_tag "Create Post",
                        confirm: "This will remove these items from the board. Are you sure?",
-                       id: 'create-post',
-                       class: 'span2'
+                       id: 'create-post'
         %>
       <% end %>
 

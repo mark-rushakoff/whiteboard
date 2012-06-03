@@ -5,7 +5,7 @@ class PostsController < ApplicationController
       @post.adopt_all_the_items
       redirect_to edit_post_path(@post)
     else
-      flash[:error] = "An Error Occurred"
+      flash[:error] = "Unable to create post"
       redirect_to '/'
     end
   end

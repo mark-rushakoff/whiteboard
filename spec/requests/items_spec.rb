@@ -20,7 +20,7 @@ describe "items", type: :request, js: true do
     fill_in 'post_title', with: 'Standup 05/28/2012: Epic Standup'
     click_button 'create-post'
 
-    click_link 'Add Interesting'
+    find('a[data-kind=Interesting] i').click
     fill_in 'item_title', :with => "Rubyming 5.0 is Out"
     find("button:contains('Public')").click
     click_button 'Create Item'

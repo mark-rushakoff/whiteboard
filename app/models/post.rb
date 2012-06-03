@@ -11,7 +11,11 @@ class Post < ActiveRecord::Base
   end
 
   def title_for_email
-    '[Standup][SF] ' + title
+    "[Standup][SF] " + title_for_blog
+  end
+
+  def title_for_blog
+    created_at.strftime("%m/%d/%y") + ': '+ title
   end
 
   def items_by_type
