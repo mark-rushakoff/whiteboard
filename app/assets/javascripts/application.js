@@ -16,6 +16,8 @@
 //= require_tree .
 
 jQuery(function($) {
+    $('[rel=popover]').popover({})
+
     $('div.btn-group[data-toggle-name=*]').each(function(){
         var group   = $(this);
         var form    = group.parents('form').eq(0);

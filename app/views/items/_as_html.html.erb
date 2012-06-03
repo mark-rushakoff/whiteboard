@@ -4,7 +4,7 @@
       <% pair_of_kinds.each do |kind| %>
         <div class='kind'>
           <h2><%= kind.pluralize %> <%= link_to dynamic_new_item_path('item[kind]' => kind), 'data-kind' => kind  do %>
-              <i class="icon-plus"></i></h2>
+              <i class="icon-plus-sign"></i></h2>
               <% end %>
           <hr>
           <% if items[kind].present? %>
