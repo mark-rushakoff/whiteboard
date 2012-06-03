@@ -13,33 +13,31 @@
     <% end %>
 
   <fieldset>
-    <legend><%= controller.action_name.capitalize %> Item</legend>
-
     <div class='control-group'>
-      <%= f.label :title, class: 'control-label' %>
       <div class='controls'>
-        <%= f.text_field :title %>
+        <div class="btn-group" data-toggle-name="item[kind]" data-toggle="buttons-radio" >
+          <% Item::KINDS.each do |kind| %>
+            <button type='button' value='<%= kind %>' class='btn btn-info' data-toggle="button"><%= kind %></button>
+          <% end %>
+        </div>
+        <%=  f.hidden_field :kind %>
       </div>
     </div>
 
     <div class='control-group'>
       <div class='controls'>
         <div class="btn-group" data-toggle-name="item[public]" data-toggle="buttons-radio" >
-          <button type="button" value="0" class="btn" data-toggle="button">Private</button>
-          <button type="button" value="1" class="btn" data-toggle="button">Public</button>
+          <button type="button" value="0" class="btn btn-warning" data-toggle="button">Private</button>
+          <button type="button" value="1" class="btn btn-warning" data-toggle="button">Public</button>
         </div>
         <%=  f.hidden_field :public, value: @item.public ? '1' : '0' %>
       </div>
     </div>
 
     <div class='control-group'>
+      <%= f.label :title, class: 'control-label' %>
       <div class='controls'>
-        <div class="btn-group" data-toggle-name="item[kind]" data-toggle="buttons-radio" >
-          <% Item::KINDS.each do |kind| %>
-            <button type='button' value='<%= kind %>' class='btn' data-toggle="button"><%= kind %></button>
-          <% end %>
-        </div>
-        <%=  f.hidden_field :kind %>
+        <%= f.text_field :title %>
       </div>
     </div>
 
