@@ -23,9 +23,6 @@
   }
 }
 
-html, body {
-  height: 100%;
-}
 
 a:hover {
   text-decoration: none;
@@ -70,4 +67,14 @@ ul.large-font li {
   @include box-orient(vertical);
   @include box-pack(top);
   @include box-flex(1);
+
+  @media (max-width: 979px) {
+    padding-top: 20px;
+  }
+}
+
+.bottom.navbar {
+  @media (max-width: 480px) {
+    display: none;
+  }
 }

@@ -1,11 +1,11 @@
 
 <%= render partial: 'as_html', locals: { items: @items } %>
 
-<div class="navbar navbar-fixed-bottom">
+<div class="bottom navbar navbar-fixed-bottom">
   <div class="navbar-inner">
     <div class="container">
 
-      <%=  form_tag '/posts', method: 'post', class: 'hidden-phone navbar-form pull-right' do %>
+      <%=  form_tag '/posts', method: 'post', class: 'navbar-form pull-right' do %>
         <%= text_field_tag 'post[title]', "#{Time.now.strftime("%m/%d/%Y")}: ", class: 'span4', placeholder: "Post Title" %>
         <%= submit_tag "Create Post",
                        confirm: "This will remove these items from the board. Are you sure?",
