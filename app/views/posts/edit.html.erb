@@ -2,7 +2,7 @@
 
 <div class='row'>
   <div class='span4'><%= link_to "Add New Face", new_post_item_path(@post, kind: 'face'), class: 'btn' %></div>
-  <div class='span4'><%= link_to "Add Help", new_post_item_path(@post, 'item[kind]' => 'Help'), class: 'btn' %></div>
+  <div class='span4'><%= link_to "Add Help", dynamic_new_item_path('item[kind]' => 'Help'), class: 'btn' %></div>
   <div class='span4'><%= link_to "Add Interesting", new_post_item_path(@post, 'item[kind]' => 'Interesting'), class: 'btn' %></div>
 </div>
 

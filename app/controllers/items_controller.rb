@@ -11,11 +11,7 @@ class ItemsController < ApplicationController
   def new
     @post = Post.find_by_id(params[:post_id])
     @item = Item.new(params[:item])
-    if params[:kind]
-      render "items/new_#{params[:kind]}"
-    else
-      render "items/new"
-    end
+    render_custom_item_template @item
   end
 
   def index
@@ -31,7 +27,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    render 'items/new'
+    render_custom_item_template @item
   end
 
   def update
@@ -40,7 +36,17 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to @item.post ? edit_post_path(@item.post) : '/'
     else
-      render 'items/new'
+      render_custom_item_template @item
+    end
+  end
+
+  private
+
+  def render_custom_item_template(item)
+    if item.possible_template_name && template_exists?(item.possible_template_name)
+      render item.possible_template_name
+    else
+      render "items/new"
     end
   end
 end

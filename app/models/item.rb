@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  KINDS = ['New face', 'Help', 'Interesting']
+  KINDS = ['New face', 'Help', 'Interesting', 'Event']
 
   belongs_to :post
 
@@ -14,5 +14,9 @@ class Item < ActiveRecord::Base
 
   def self.orphans
     where(post_id: nil).order("created_at ASC").group_by(&:kind)
+  end
+
+  def possible_template_name
+    kind && "items/new_#{kind.downcase.gsub(" ", '_')}"
   end
 end

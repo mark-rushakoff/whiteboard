@@ -5,11 +5,11 @@ describe "items", type: :request, js: true do
     mock_omniauth
     visit '/auth/google_apps/callback'
     visit '/'
-    click_link 'Add New Face'
+    find('a[data-kind="New face"] i').click
     fill_in 'item_title', :with => "Johnathon McKenzie"
     click_button 'Create New Face'
 
-    click_link 'Add Help'
+    find('a[data-kind=Help] i').click
     fill_in 'item_title', :with => "IE8 doesn't work"
     fill_in 'item_description', :with => "No, srsly.  It doesn't work"
     click_button 'Create Item'

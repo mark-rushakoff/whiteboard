@@ -1,12 +1,6 @@
 
 <%= render partial: 'as_html', locals: { items: @items } %>
 
-<div class='row'>
-  <div class='span4'><%= link_to "Add New Face", new_item_path(kind: 'face'), class: 'btn' %></div>
-  <div class='span4'><%= link_to "Add Help", new_item_path('item[kind]' => 'Help'), class: 'btn' %></div>
-  <div class='span4'><%= link_to "Add Interesting", new_item_path('item[kind]' => 'Interesting'), class: 'btn' %></div>
-</div>
-
 <div class="navbar navbar-fixed-bottom">
   <div class="navbar-inner">
     <div class="container">

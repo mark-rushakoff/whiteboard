@@ -22,16 +22,14 @@
 </div>
 
 
-<div class='container-fluid'>
-  <% if flash[:error] %>
-    <p class="alert alert-error"><%= flash[:error] %></p>
-  <% end %>
-  <% if flash[:notice] %>
-    <p class="alert alert-success"><%= flash[:notice] %></p>
-  <% end %>
+<% if flash[:error] %>
+  <p class="alert alert-error"><%= flash[:error] %></p>
+<% end %>
+<% if flash[:notice] %>
+  <p class="alert alert-success"><%= flash[:notice] %></p>
+<% end %>
 
-  <%= yield %>
-</div>
+<%= yield %>
 
 </body>
 </html>

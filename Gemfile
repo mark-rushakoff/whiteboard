@@ -14,17 +14,20 @@ group :test, :development do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'launchy'
-  gem 'heroku'
   gem 'sqlite3'
   gem 'database_cleaner'
 end
 
+group :development do
+  gem 'debugger'
+  gem 'heroku'
+end
+
 group :assets do
+  gem 'compass-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass'
   gem 'font-awesome-sass-rails'
 end
-
-

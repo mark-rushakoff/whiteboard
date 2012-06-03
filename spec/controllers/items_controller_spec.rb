@@ -35,12 +35,13 @@ describe ItemsController do
     it "should create a new Item object" do
       get :new
       assigns[:item].should be_new_record
+      response.should render_template('items/new')
       response.should be_ok
     end
 
-    it "should render a new face form if requested" do
-      get :new, kind: 'face'
-      response.should render_template('items/new_face')
+    it "should render the custom template for the kind if there is one" do
+      get :new, item: { kind: 'New face' }
+      response.should render_template('items/new_new_face')
     end
 
     it "uses the params to create the new item so you can set defaults in the link" do
@@ -116,6 +117,12 @@ describe ItemsController do
       assigns[:item].should == item
       response.should render_template 'items/new'
     end
+
+    it "should render the custom template for the kind if there is one" do
+      item = create(:item, kind: 'New face')
+      get :edit, id: item.id
+      response.should render_template('items/new_new_face')
+    end
   end
 
   describe "#update" do
@@ -131,6 +138,20 @@ describe ItemsController do
       put :update, id: item.id, post_id: item.post, item: { title: "New Title" }
       item.reload.title.should == "New Title"
       response.should redirect_to(edit_post_path(item.post))
+    end
+
+    describe "when the item is invalid" do
+      it "should render new" do
+        item = create(:item)
+        put :update, id: item.id, post_id: item.post, item: { title: "" }
+        response.should render_template('items/new')
+      end
+
+      it "should render a custom template if there is one" do
+        item = create(:item, kind: 'New face')
+        put :update, id: item.id, post_id: item.post, item: { title: "" }
+        response.should render_template('items/new_new_face')
+      end
     end
   end
 end
