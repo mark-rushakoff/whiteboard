@@ -10,7 +10,8 @@
         <%= text_field_tag 'post[title]', nil, placeholder: "Post Title (eg: Best Standup Ever)" %>
         <%= submit_tag "Create Post",
                        confirm: "This will remove these items from the board. Are you sure?",
-                       id: 'create-post'
+                       id: 'create-post',
+                       class: 'btn btn-primary'
         %>
       <% end %>
 
