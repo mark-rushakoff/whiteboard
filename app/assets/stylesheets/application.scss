@@ -28,11 +28,6 @@ a:hover {
   text-decoration: none;
 }
 
-ul.large-font li {
-  line-height: 32px;
-  font-size: 24px;
-}
-
 .outer {
   height: 100%;
   @include display-box;
@@ -69,7 +64,21 @@ ul.large-font li {
   @include box-flex(1);
 
   @media (max-width: 979px) {
-    padding-top: 20px;
+    padding-top: 10px;
+  }
+
+  @media (min-width: 980px) {
+    li {
+      line-height: 32px;
+      font-size: 24px;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 979px) {
+    li {
+      line-height: 24px;
+      font-size: 20px;
+    }
   }
 }
 
