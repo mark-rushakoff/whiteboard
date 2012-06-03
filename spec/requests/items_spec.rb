@@ -17,11 +17,11 @@ describe "items", type: :request, js: true do
     current_url.should match(/http:\/\/127\.0\.0\.1:\d*\//)
 
     page.execute_script "$.rails.confirm = function() { return true; }"
-    fill_in 'post_title', with: 'Standup 05/28/2012: Epic Standup'
+    fill_in 'post_title', with: 'Epic Standup'
     click_button 'create-post'
 
     find('a[data-kind=Interesting] i').click
-    fill_in 'item_title', :with => "Rubyming 5.0 is Out"
+    fill_in 'item_title', :with => "Rubymine 5.0 is Out"
     find("button:contains('Public')").click
     click_button 'Create Item'
 
@@ -31,10 +31,10 @@ describe "items", type: :request, js: true do
     find('.email_post').should have_content("From: Matthew")
     find('.email_post').should have_content("Johnathon McKenzie")
     find('.email_post').should have_content("IE8 doesn't work")
-    find('.email_post').should have_content("Rubyming 5.0 is Out")
+    find('.email_post').should have_content("Rubymine 5.0 is Out")
 
     find('.blog_post').should_not have_content("Johnathon McKenzie")
     find('.blog_post').should_not have_content("IE8 doesn't work")
-    find('.blog_post').should have_content("Rubyming 5.0 is Out")
+    find('.blog_post').should have_content("Rubymine 5.0 is Out")
   end
 end
