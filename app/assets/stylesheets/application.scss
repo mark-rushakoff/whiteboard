@@ -28,6 +28,10 @@ a:hover {
   text-decoration: none;
 }
 
+.navbar i {
+  font-size: 19px;
+}
+
 .outer {
   height: 100%;
   @include display-box;
