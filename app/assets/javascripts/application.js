@@ -13,10 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.qtip.min
 //= require_tree .
 
 jQuery(function($) {
-    $('[rel=popover]').popover({});
+    $('.has-qtip').qtip({
+        position: {
+            viewport: $(window),
+            at: 'bottom middle'
+        },
+        style: {
+            classes: 'ui-tooltip-bootstrap'
+        }
+    });
+
 
     $('div.btn-group[data-toggle-name=*], span.btn-group[data-toggle-name=*]').each(function(){
         var group   = $(this);

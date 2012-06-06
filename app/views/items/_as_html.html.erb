@@ -19,6 +19,11 @@
                               method: :delete do %>
                     <i class='icon-trash'></i>
                   <% end %>
+                  <% if item.description.present? %>
+                    <i class='icon-info-sign has-qtip'
+                       title="<pre><%= item.description %></pre>">
+                    </i>
+                  <% end %>
                 </li>
               <% end %>
             </ul>

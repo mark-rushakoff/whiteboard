@@ -11,7 +11,7 @@
  *= require_self
  *= require_tree .
 */
-
+@import "jquery.qtip.min";
 @import "bootstrap";
 @import "bootstrap-responsive";
 @import 'font-awesome';
@@ -63,6 +63,10 @@ a:hover {
 }
 
 .kind {
+  i {
+    color: #08C;
+  }
+  
   width: 100%;
   height: 100%;
   margin: 0 10px;

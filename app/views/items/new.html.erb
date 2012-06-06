@@ -30,13 +30,10 @@
           <button type="button" value="0" class="btn btn-warning" data-toggle="button">Private</button>
           <button type="button" value="1" class="btn btn-warning" data-toggle="button">Public</button>
         </span>
-        <i class='icon-question-sign'
-           rel="popover"
-           data-content="Public items will be posted to the blog.  Please do not include client names (unless you are
+        <i class='icon-question-sign has-qtip'
+           title="Public items will be posted to the blog.  Please do not include client names (unless you are
            sure they would like to be mentioned) or include information only of
-           interest to people working in the office."
-           data-original-title="Public vs. Private?"
-           data-placement="bottom"></i>
+           interest to people working in the office."></i>
         <%=  f.hidden_field :public, value: @item.public ? '1' : '0' %>
       </div>
     </div>
