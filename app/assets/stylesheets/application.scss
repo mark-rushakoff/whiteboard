@@ -23,6 +23,11 @@
   }
 }
 
+@media (min-width: 3840px) {
+  .bottom.navbar form, .kind i {
+    display: none;
+  }
+}
 
 a:hover {
   text-decoration: none;
@@ -71,7 +76,14 @@ a:hover {
     padding-top: 10px;
   }
 
-  @media (min-width: 980px) {
+  @media (min-width: 3840px) {
+    li {
+      line-height: 80px;
+      font-size: 65px;
+    }
+  }
+
+  @media (min-width: 980px) and (max-width: 3840px) {
     li {
       line-height: 32px;
       font-size: 24px;
